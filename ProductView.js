@@ -1,0 +1,3 @@
+class ProductView extends ProductController{
+    
+}
