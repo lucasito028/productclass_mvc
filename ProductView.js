@@ -1,5 +1,7 @@
 class ProductView extends ProductController{
     static main (){
+        console.log("Banana banana")
+        /*
         const a = 1, b = 0;
         while(b == 1){
             switch(a) {
@@ -25,7 +27,8 @@ class ProductView extends ProductController{
 
             }
         }
+        */
     }
 }
 
-module.exports = {rodar} = ProductView.main()
+module.exports = { rodar: ProductView.main };
