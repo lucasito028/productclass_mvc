@@ -66,7 +66,7 @@ class Produto {
     creatediscount = (time, valuediscount) => {
 
         const interval = setInterval(() => {
-            console.log(`O Desconto está na ativa!! de ${valuediscount}%\n\nProduto ${this.name} está custando: ${this.price / (1 + (valuediscount / 100))}`)
+            message = `O Desconto está na ativa!! de ${valuediscount}%\n\nProduto ${this.name} está custando: ${this.price / (1 + (valuediscount / 100))}`
         }, 750)
         
         setTimeout(() => {

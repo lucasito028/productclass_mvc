@@ -27,3 +27,5 @@ class ProductView extends ProductController{
         }
     }
 }
+
+module.exports = {rodar} = ProductView.main()
