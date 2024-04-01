@@ -33,6 +33,8 @@ class Produto {
             }
         }else {
             value = {
+                name: null,
+                price: null,
                 response: "Não Deu para Ultrapassar o Valor"
             }
         }
@@ -51,8 +53,8 @@ class Produto {
         setTimeout(() => {
             clearInterval(interval);
             value = {
-                name: this.name,
-                stock: this.stock,
+                name: null,
+                stock: null,
                 response: `Teste 3`
             }
         }, time * 1000)
@@ -70,8 +72,8 @@ class Produto {
         setTimeout(() => {
             clearInterval(interval);
             value = {
-                name: this.name,
-                stock: this.stock,
+                name: null,
+                stock: null,
                 response: `Teste 3`
             }
         }, time * 1000)
