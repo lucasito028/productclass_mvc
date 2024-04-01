@@ -74,7 +74,7 @@ class Produto {
             value = {
                 name: null,
                 stock: null,
-                response: `Teste 3`
+                response: `O desconto deu errado`
             }
         }, time * 1000)
         
