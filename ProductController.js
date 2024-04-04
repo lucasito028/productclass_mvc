@@ -5,7 +5,7 @@ class ProductController extends Product {
     }
 
     create(name, price, stock) {
-        const product = new Produto(name, price, stock); // Create a new product instance
+        const product = new Product(name, price, stock); // Create a new product instance
         this.products.push(product); // Add the new product to the products array
         return product; // Return the created product
     }

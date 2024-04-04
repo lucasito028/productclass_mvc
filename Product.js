@@ -71,3 +71,4 @@ class Product {
         return value;
     };
 }
+
