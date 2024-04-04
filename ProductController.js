@@ -1,40 +1,40 @@
 class ProductController extends Product {
 
     constructor() {
-        this.products = []; // Initialize an empty array to store products
+        this.products = []; 
     }
 
     create(name, price, stock) {
-        const product = new Product(name, price, stock); // Create a new product instance
-        this.products.push(product); // Add the new product to the products array
-        return product; // Return the created product
+        const product = new Product(name, price, stock); 
+        this.products.push(product);
+        return product;
     }
 
     update(name, newPrice, newStock) {
-        const product = this.products.find(prod => prod.name === name); // Find the product by name
+        const product = this.products.find(prod => prod.name === name);
         if (product) {
-            product.price = newPrice; // Update the price
-            product.stock = newStock; // Update the stock
-            return product; // Return the updated product
+            product.price = newPrice; 
+            product.stock = newStock; 
+            return product; 
         }
-        return null; // Return null if product not found
+        return null; 
     }
 
     listAll() {
-        return this.products; // Return all products
+        return this.products;
     }
 
     listOne(name) {
-        return this.products.find(prod => prod.name === name); // Find and return a specific product by name
+        return this.products.find(prod => prod.name === name); 
     }
 
     delete(name) {
-        const index = this.products.findIndex(prod => prod.name === name); // Find the index of the product by name
+        const index = this.products.findIndex(prod => prod.name === name); 
         if (index !== -1) {
-            this.products.splice(index, 1); // Remove the product from the array
-            return true; // Return true indicating successful deletion
+            this.products.splice(index, 1); 
+            return true; 
         }
-        return false; // Return false if product not found
+        return false; 
     }
 }
 
