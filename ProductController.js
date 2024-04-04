@@ -11,13 +11,16 @@ class ProductController extends Product {
         return product;
     }
 
-    update(id, newPrice, newStock) {
+    update(id, newName, newPrice, newStock) {
         const product = this.products[id];
+
         if (product) {
+            product.name = newName;
             product.price = newPrice;
             product.stock = newStock;
             return product;
         }
+        
         return null;
     }
 
