@@ -1,41 +1,39 @@
 class ProductController extends Product {
 
     constructor() {
-        this.products = []; 
+        super();
+        this.products = {}; 
     }
 
     create(name, price, stock) {
-        const product = new Product(name, price, stock); 
-        this.products.push(product);
+        const product = new Product(name, price, stock);
+        this.products[product.id] = product; 
         return product;
     }
 
-    update(name, newPrice, newStock) {
-        const product = this.products.find(prod => prod.name === name);
+    update(id, newPrice, newStock) {
+        const product = this.products[id];
         if (product) {
-            product.price = newPrice; 
-            product.stock = newStock; 
-            return product; 
+            product.price = newPrice;
+            product.stock = newStock;
+            return product;
         }
-        return null; 
+        return null;
     }
 
     listAll() {
-        return this.products;
+        return Object.values(this.products);
     }
 
-    listOne(name) {
-        return this.products.find(prod => prod.name === name); 
+    listOne(id) {
+        return this.products[id]; 
     }
 
-    delete(name) {
-        const index = this.products.findIndex(prod => prod.name === name); 
-        if (index !== -1) {
-            this.products.splice(index, 1); 
-            return true; 
+    delete(id) {
+        if (this.products[id]) {
+            delete this.products[id]; 
+            return true;
         }
-        return false; 
+        return false;
     }
 }
-
-
