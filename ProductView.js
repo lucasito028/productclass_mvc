@@ -1,10 +1,13 @@
 class ProductView extends ProductController{
     static main (){
         
-        /*
-        const a = 1, b = 0;
-        while(b == 1){
-            switch(a) {
+        products = [];
+        
+        const a = true;
+        const b = 1;
+
+        while(a){
+            switch(b) {
 
                 case 1:
                     
@@ -22,12 +25,12 @@ class ProductView extends ProductController{
 
                     break;
                 case 0:
-                    b = 0;
+                    b = false;
                     break;
 
             }
         }
-        */
+
     }
 }
 

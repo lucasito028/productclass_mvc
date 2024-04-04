@@ -1,84 +1,73 @@
-class Produto {
-
-    constructor(name, price, stock){
-
+class Product {
+    
+    constructor(name, price, stock) {
         this.name = name;
         this.price = price;
         this.stock = stock;
-
     }
 
-    value = {}
-    
-
-    showproduct = () => {
-
+    showProduct = () => {
         const value = {
             name: this.name,
             price: this.price,
             stock: this.stock
-        }
-        
+        };
         return value;
-
-    }
+    };
 
     calcularSubtotal = (stock) => {
-
-        if(stock <= this.stock) {
+        let value = {};
+        if (stock <= this.stock) {
             value = {
                 name: this.name,
                 price: this.price * stock,
-                response: `O Resultado deu ${this.price}`
-            }
-        }else {
+                response: `O resultado deu ${this.price * stock}`
+            };
+        } else {
             value = {
                 name: null,
                 price: null,
-                response: "Não Deu para Ultrapassar o Valor"
-            }
+                response: "Não deu para ultrapassar o valor"
+            };
         }
-
         return value;
+    };
 
-    }
-
-
-    updatestock = (time, valuestock) => {
-
+    updateStock = (time, valueStock) => {
+        let value = {};
         const interval = setInterval(() => {
-            this.stock = this.stock + valuestock
-        }, 750)
-        
+            this.stock = this.stock + valueStock;
+        }, 750);
+
         setTimeout(() => {
             clearInterval(interval);
             value = {
                 name: null,
                 stock: null,
-                response: `Teste 3`
-            }
-        }, time * 1000)
+                response: "Teste 3"
+            };
+        }, time * 1000);
 
         return value;
-    }
+    };
 
-
-    creatediscount = (time, valuediscount) => {
-
+    createDiscount = (time, valueDiscount) => {
+        let value = {};
         const interval = setInterval(() => {
-            message = `O Desconto está na ativa!! de ${valuediscount}%\n\nProduto ${this.name} está custando: ${this.price / (1 + (valuediscount / 100))}`
-        }, 750)
-        
+            value.message = `O desconto está na ativa!! de ${valueDiscount}%\n\nProduto ${
+                this.name
+            } está custando: ${(this.price / (1 + valueDiscount / 100)).toFixed(2)}`;
+        }, 750);
+
         setTimeout(() => {
             clearInterval(interval);
             value = {
                 name: null,
                 stock: null,
                 response: `O desconto deu errado`
-            }
-        }, time * 1000)
-        
-        return value;
-    }
+            };
+        }, time * 1000);
 
+        return value;
+    };
 }
