@@ -7,68 +7,66 @@ class Product {
     }
 
     showProduct = () => {
-        const value = {
+        return {
             name: this.name,
             price: this.price,
             stock: this.stock
         };
-        return value;
     };
 
     calcularSubtotal = (stock) => {
-        let value = {};
         if (stock <= this.stock) {
-            value = {
+            return {
                 name: this.name,
                 price: this.price * stock,
                 response: `O resultado deu ${this.price * stock}`
             };
         } else {
-            value = {
+            return {
                 name: null,
                 price: null,
-                response: "Não deu para ultrapassar o valor"
+                response: "Não foi possível ultrapassar o valor"
             };
         }
-        return value;
     };
 
     updateStock = (time, valueStock) => {
-        let value = {};
-        const interval = setInterval(() => {
-            this.stock = this.stock + valueStock;
-        }, 750);
-
-        setTimeout(() => {
-            clearInterval(interval);
-            value = {
-                name: null,
-                stock: null,
-                response: "Teste 3"
-            };
-        }, time * 1000);
-
-        return value;
+        return new Promise((resolve, reject) => {
+            const interval = setInterval(() => {
+                this.stock = this.stock + valueStock;
+            }, 750);
+    
+            setTimeout(() => {
+                clearInterval(interval);
+                resolve({
+                    name: null,
+                    stock: null,
+                    response: "Estoque atualizado com sucesso"
+                });
+            }, time * 1000);
+        });
     };
 
     createDiscount = (time, valueDiscount) => {
-        let value = {};
-        const interval = setInterval(() => {
-            value.message = `O desconto está na ativa!! de ${valueDiscount}%\n\nProduto ${
-                this.name
-            } está custando: ${(this.price / (1 + valueDiscount / 100)).toFixed(2)}`;
-        }, 750);
-
-        setTimeout(() => {
-            clearInterval(interval);
-            value = {
-                name: null,
-                stock: null,
-                response: `O desconto deu errado`
-            };
-        }, time * 1000);
-
-        return value;
+        return new Promise((resolve, reject) => {
+            const interval = setInterval(() => {
+                resolve({
+                    message: `O desconto está na ativa!! de ${valueDiscount}%\n\nProduto ${
+                        this.name
+                    } está custando: ${(this.price / (1 + valueDiscount / 100)).toFixed(2)}`
+                });
+            }, 750);
+    
+            setTimeout(() => {
+                clearInterval(interval);
+                reject({
+                    name: null,
+                    stock: null,
+                    response: `O desconto deu errado`
+                });
+            }, time * 1000);
+        });
     };
 }
 
+module.exports = Product;

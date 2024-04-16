@@ -1,7 +1,7 @@
-class ProductView extends ProductController{
+const ProductController = require('./ProductController');
+
+class ProductView{
     static main (){
-        
-        products = [];
         
         const a = true;
         const b = 1;
@@ -34,4 +34,4 @@ class ProductView extends ProductController{
     }
 }
 
-module.exports = { rodar: ProductView.main };
+module.exports = ProductView;

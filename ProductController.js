@@ -1,42 +1,73 @@
-class ProductController extends Product {
+const Product = require('./Product');
 
+class ProductController {
     constructor() {
-        super();
-        this.products = {}; 
+        this.productsPossible = [
+            new Product("Produto 1", 10.10, 20),
+            new Product("Produto 2", 20.30, 50),
+            new Product("Produto 3", 15.50, 36),
+            new Product("Produto 4", 10.90, 45),
+            new Product("Produto 5", 10.20, 35),
+            new Product("Produto 6", 10.10, 45),
+            new Product("Produto 7", 12.44, 27),
+            new Product("Produto 8", 17.90, 28),
+            new Product("Produto 9", 10.80, 39),
+        ];
+
+        this.productsInCart = [];
     }
 
-    create(name, price, stock) {
-        const product = new Product(name, price, stock);
-        this.products[product.id] = product; 
-        return product;
-    }
-
-    update(id, newName, newPrice, newStock) {
-        const product = this.products[id];
-
-        if (product) {
-            product.name = newName;
-            product.price = newPrice;
-            product.stock = newStock;
-            return product;
+    // Adiciona um produto ao carrinho pelo índice do array
+    addToCart(productIndex, quantity) {
+        const product = this.productsPossible[productIndex];
+        if (!product) {
+            console.log("Produto não encontrado.");
+            return;
         }
-        
-        return null;
-    }
-
-    listAll() {
-        return Object.values(this.products);
-    }
-
-    listOne(id) {
-        return this.products[id]; 
-    }
-
-    delete(id) {
-        if (this.products[id]) {
-            delete this.products[id]; 
-            return true;
+        if (product.stock < quantity) {
+            console.log("Quantidade solicitada indisponível.");
+            return;
         }
-        return false;
+
+        const existingProductIndex = this.productsInCart.findIndex(prod => prod.name === product.name);
+        if (existingProductIndex !== -1) {
+            this.productsInCart[existingProductIndex].stock += quantity;
+        } else {
+            this.productsInCart.push(new Product(product.name, product.price, quantity));
+        }
+
+        console.log(`${quantity} ${product.name}(s) adicionado(s) ao carrinho.`);
+    }
+
+    // Remove um produto do carrinho pelo índice do array
+    removeFromCart(productIndex, quantity) {
+        const productInCart = this.productsInCart[productIndex];
+        if (!productInCart) {
+            console.log("Produto não encontrado no carrinho.");
+            return;
+        }
+
+        if (productInCart.stock < quantity) {
+            console.log("Quantidade a ser removida maior do que a disponível no carrinho.");
+            return;
+        }
+
+        productInCart.stock -= quantity;
+        if (productInCart.stock === 0) {
+            this.productsInCart.splice(productIndex, 1);
+        }
+
+        console.log(`${quantity} ${productInCart.name}(s) removido(s) do carrinho.`);
+    }
+
+    // Calcula o total no carrinho
+    calculateTotal() {
+        let total = 0;
+        for (const product of this.productsInCart) {
+            total += product.price * product.stock;
+        }
+        return total.toFixed(2);
     }
 }
+
+module.exports = ProductController;
