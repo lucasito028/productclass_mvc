@@ -3,6 +3,7 @@ const ProductView = require('./ProductView');
 class Principal{
 
     static main(){
+
         /*
         // Criar uma instância de Product
         const product = new Product("Produto 1", 10, 100);
@@ -28,8 +29,9 @@ class Principal{
             .then(response => console.log(response))
             .catch(error => console.error(error));
     */
-   }
 
+            
+   }
 }
 
 Principal.main();
