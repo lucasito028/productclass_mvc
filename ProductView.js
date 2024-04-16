@@ -1,6 +1,7 @@
 const ProductController = require('./ProductController');
 
 class ProductView{
+    
     static main (){
         
         const a = true;

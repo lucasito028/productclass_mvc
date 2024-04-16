@@ -2,6 +2,7 @@ const Product = require('./Product');
 
 class ProductController {
     constructor() {
+        
         this.productsPossible = [
             new Product("Produto 1", 10.10, 20),
             new Product("Produto 2", 20.30, 50),
@@ -67,6 +68,29 @@ class ProductController {
             total += product.price * product.stock;
         }
         return total.toFixed(2);
+    }
+
+    createDiscount(time, valueDiscount, productName) {
+        if (!time || !valueDiscount || !productName) {
+            console.log("Parametros ausentes.");
+            return;
+        }
+        const product = this.productsInCart.find(prod => prod.name === productName);
+        if (!product) {
+            console.log("Produto não encontrado no carrinho.");
+            return;
+        }
+
+        const interval = setInterval(() => {
+            console.log(`O desconto está na ativa!! ${valueDiscount}% de desconto.`);
+            console.log(`Produto ${product.name} está custando: ${(product.price / (1 + valueDiscount / 100)).toFixed(2)}`);
+        }, 750);
+
+        setTimeout(() => {
+            clearInterval(interval);
+            console.log("O desconto expirou.");
+        }, time * 1000);
+
     }
 }
 
