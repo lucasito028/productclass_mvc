@@ -143,13 +143,13 @@ class ProductController {
         console.log(`${deletedProduct[0].name} removido da lista de produtos.`);
     }
     
-    updatestockProduct(productIndex, newStock) {
+    updatestockProduct(productIndex, newStock, time) {
         const product = this.productsPossible[productIndex];
         if (!product) {
             console.log("Produto não encontrado.");
             return;
         }
-        product.updateStock(3, newStock) // Chama a função updateStock do produto com um tempo de 3 segundos e o novo estoque
+        product.updateStock(time, newStock) // Chama a função updateStock do produto com um tempo de 3 segundos e o novo estoque
             .then(response => console.log(response))
             .catch(error => console.error(error));
     }
@@ -160,7 +160,7 @@ class ProductController {
             console.log("Produto não encontrado.");
             return;
         }
-        product.createDiscount(3, discount) // Chama a função createDiscount do produto com um tempo de 3 segundos e o desconto
+        product.createDiscount(time, discount) // Chama a função createDiscount do produto com um tempo de 3 segundos e o desconto
             .then(response => console.log(response))
             .catch(error => console.error(error));
     }
