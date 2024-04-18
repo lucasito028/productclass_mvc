@@ -1,6 +1,7 @@
 const Product = require('./Product');
 
 class ProductController {
+
     constructor() {
         
         this.productsPossible = [
@@ -20,7 +21,8 @@ class ProductController {
         this.productsInCart = [];
     }
 
-    /* Controllers da Funcoes do Cliente */
+
+    /* Controllers Costumers Functions */
     addToCart(productIndex, quantity) {
         const product = this.productsPossible[productIndex];
         if (!product) {
@@ -42,8 +44,9 @@ class ProductController {
         console.log(`${quantity} ${product.name}(s) adicionado(s) ao carrinho.`);
     }
 
+
     // Remove um produto do carrinho pelo índice do array
-    removeFromCart(productIndex, quantity) {
+    removestockFromCart(productIndex, quantity) {
         const productInCart = this.productsInCart[productIndex];
         if (!productInCart) {
             console.log("Produto não encontrado no carrinho.");
@@ -63,7 +66,16 @@ class ProductController {
         console.log(`${quantity} ${productInCart.name}(s) removido(s) do carrinho.`);
     }
 
-    // Calcula o total no carrinho
+    removeproductFromCart(productIndex) {
+        const removedProduct = this.productsInCart.splice(productIndex, 1);
+            if (removedProduct.length === 0) {
+                console.log("Produto não encontrado no carrinho.");
+            return;
+        }
+        console.log(`${removedProduct[0].name} removido do carrinho.`);
+    }
+
+    // Calculate Brute value
     calculateTotal() {
         let total = 0;
         for (const product of this.productsInCart) {
@@ -72,6 +84,7 @@ class ProductController {
         return total.toFixed(2);
     }
 
+    // Just implments discount
     implementsdiscount() {
         let total = 0;
         for (const product of this.productsInCart) {
@@ -81,29 +94,77 @@ class ProductController {
     }
 
 
-    /* Controllers da Funcoes do Admin */
 
-    createProduct() {
+    
+    /* Controllers Admin Functions*/
 
+    createProduct(name, price, stock) {
+        const newProduct = new Product(name, price, stock);
+        this.productsPossible.push(newProduct);
+        console.log(`${name} adicionado à lista de produtos.`);
     }
-    updateProduct() {
+    
+    updateProduct(productIndex, newName, newPrice, newStock) {
 
-    }
-    readProduct() {
+        const productToUpdate = this.productsPossible[productIndex];
 
+        if (!productToUpdate) {
+            console.log("Produto não encontrado.");
+            return;
+        }
+        productToUpdate.name = newName;
+        productToUpdate.price = newPrice;
+        productToUpdate.stock = newStock;
+        console.log(`${newName} atualizado.`);
     }
+    
+    readProduct(productIndex) {
+        const product = this.productsPossible[productIndex];
+        if (!product) {
+            console.log("Produto não encontrado.");
+            return;
+        }
+        console.log(`Nome: ${product.name}, Preço: ${product.price}, Estoque: ${product.stock}`);
+    }
+    
     listallProduct() {
-
+        console.log("Lista de todos os produtos:");
+        this.productsPossible.forEach((product, index) => {
+            console.log(`${index + 1}. Nome: ${product.name}, Preço: ${product.price}, Estoque: ${product.stock}`);
+        });
     }
-    deleteProduct() {
-
+    
+    deleteProduct(productIndex) {
+        const deletedProduct = this.productsPossible.splice(productIndex, 1);
+        if (deletedProduct.length === 0) {
+            console.log("Produto não encontrado.");
+            return;
+        }
+        console.log(`${deletedProduct[0].name} removido da lista de produtos.`);
     }
-    updatestockProduct() {
-
+    
+    updatestockProduct(productIndex, newStock) {
+        const product = this.productsPossible[productIndex];
+        if (!product) {
+            console.log("Produto não encontrado.");
+            return;
+        }
+        product.updateStock(3, newStock) // Chama a função updateStock do produto com um tempo de 3 segundos e o novo estoque
+            .then(response => console.log(response))
+            .catch(error => console.error(error));
     }
-    createciscount() {
-
+    
+    createciscount(productIndex, discount) {
+        const product = this.productsPossible[productIndex];
+        if (!product) {
+            console.log("Produto não encontrado.");
+            return;
+        }
+        product.createDiscount(3, discount) // Chama a função createDiscount do produto com um tempo de 3 segundos e o desconto
+            .then(response => console.log(response))
+            .catch(error => console.error(error));
     }
+    
 
 }
 

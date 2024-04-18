@@ -43,11 +43,11 @@ class ProductView{
             switch (escolha) {
                 case 1:
                     alert("Você selecionou a opção No Cliente.");
-                    this.opcaoclientes();
+                    this.adminchoise();
                 break;
                 case 2:
                     alert("Você selecionou a opção No ADMIN.");
-                    opcaoadm();
+                    this.adminchoise();
                 break;
                 case 3:
                     alert("Você selecionou a opção Sair. Encerrando o ciclo.");
@@ -59,10 +59,10 @@ class ProductView{
                 }
             }
             
-    opcaoclientes(){
+    costumerchoise(){
 
     }
-    opcaoadm(){
+    adminchoise(){
         
     }
    }
