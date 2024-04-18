@@ -1,5 +1,3 @@
-const ProductView = require('./ProductView');
-
 class Principal{
 
     static main(){
@@ -29,9 +27,34 @@ class Principal{
             .then(response => console.log(response))
             .catch(error => console.error(error));
     */
-
-            
+   
+    let escolha;
+                
+    while (true) {
+                  // Solicita ao usuário que escolha uma opção
+    escolha = prompt(`Escolha uma opção:\n
+    1 - No Cliente\n
+    2 - No ADMIN\n
+    3 - Sair`);
+              
+    escolha = parseInt(escolha);
+              
+            switch (escolha) {
+                case 1:
+                    alert("Você selecionou a opção No Cliente.");
+                break;
+                case 2:
+                    alert("Você selecionou a opção No ADMIN.");
+                break;
+                case 3:
+                    alert("Você selecionou a opção Sair. Encerrando o ciclo.");
+                    return; 
+                default:
+                    alert("Opção inválida. Tente novamente.");
+                break;
+                  }
+                }
+            } 
    }
-}
 
 Principal.main();
