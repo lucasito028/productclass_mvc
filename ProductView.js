@@ -1,38 +1,69 @@
 const ProductController = require('./ProductController');
 
 class ProductView{
-    
-    static main (){
+
+    static main(){
+
+        /*
+        // Criar uma instância de Product
+        const product = new Product("Produto 1", 10, 100);
         
-        const a = true;
-        const b = 1;
+        // Testar o método showProduct
+        console.log("Detalhes do produto:");
+        console.log(product.showProduct());
 
-        while(a){
-            switch(b) {
+        // Testar o método calcularSubtotal
+        const subtotal = product.calcularSubtotal(5);
+        console.log("\nSubtotal do produto para 5 unidades:");
+        console.log(subtotal);
 
+        // Testar o método updateStock (usando Promises)
+        console.log("\nAtualizando o estoque do produto:");
+        product.updateStock(3, 50)
+            .then(response => console.log(response))
+            .catch(error => console.error(error));
+
+        // Testar o método createDiscount (usando Promises)
+        console.log("\nCriando desconto para o produto:");
+        product.createDiscount(2, 10)
+            .then(response => console.log(response))
+            .catch(error => console.error(error));
+    */
+    let escolha;
+                
+    while (true) {
+                  // Solicita ao usuário que escolha uma opção
+    escolha = prompt(`Escolha uma opção:\n
+    1 - No Cliente\n
+    2 - No ADMIN\n
+    3 - Sair`);
+              
+    escolha = parseInt(escolha);
+              
+            switch (escolha) {
                 case 1:
-                    
-                    break;
+                    alert("Você selecionou a opção No Cliente.");
+                    this.opcaoclientes();
+                break;
                 case 2:
-
-                    break;
+                    alert("Você selecionou a opção No ADMIN.");
+                    opcaoadm();
+                break;
                 case 3:
-
-                    break;
-                case 4:
-
-                    break;
-                case 5:
-
-                    break;
-                case 0:
-                    b = false;
-                    break;
-
+                    alert("Você selecionou a opção Sair. Encerrando o ciclo.");
+                    return; 
+                default:
+                    alert("Opção inválida. Tente novamente.");
+                break;
+                  }
+                }
             }
-        }
+            
+    opcaoclientes(){
 
     }
-}
-
-module.exports = ProductView;
+    opcaoadm(){
+        
+    }
+   }
+ProductView.main();

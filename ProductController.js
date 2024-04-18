@@ -4,6 +4,7 @@ class ProductController {
     constructor() {
         
         this.productsPossible = [
+
             new Product("Produto 1", 10.10, 20),
             new Product("Produto 2", 20.30, 50),
             new Product("Produto 3", 15.50, 36),
@@ -13,12 +14,13 @@ class ProductController {
             new Product("Produto 7", 12.44, 27),
             new Product("Produto 8", 17.90, 28),
             new Product("Produto 9", 10.80, 39),
+            
         ];
 
         this.productsInCart = [];
     }
 
-    // Adiciona um produto ao carrinho pelo índice do array
+    /* Controllers da Funcoes do Cliente */
     addToCart(productIndex, quantity) {
         const product = this.productsPossible[productIndex];
         if (!product) {
@@ -70,28 +72,39 @@ class ProductController {
         return total.toFixed(2);
     }
 
-    createDiscount(time, valueDiscount, productName) {
-        if (!time || !valueDiscount || !productName) {
-            console.log("Parametros ausentes.");
-            return;
+    implementsdiscount() {
+        let total = 0;
+        for (const product of this.productsInCart) {
+            total += product.price * product.stock;
         }
-        const product = this.productsInCart.find(prod => prod.name === productName);
-        if (!product) {
-            console.log("Produto não encontrado no carrinho.");
-            return;
-        }
+        return total.toFixed(2);
+    }
 
-        const interval = setInterval(() => {
-            console.log(`O desconto está na ativa!! ${valueDiscount}% de desconto.`);
-            console.log(`Produto ${product.name} está custando: ${(product.price / (1 + valueDiscount / 100)).toFixed(2)}`);
-        }, 750);
 
-        setTimeout(() => {
-            clearInterval(interval);
-            console.log("O desconto expirou.");
-        }, time * 1000);
+    /* Controllers da Funcoes do Admin */
+
+    createProduct() {
 
     }
+    updateProduct() {
+
+    }
+    readProduct() {
+
+    }
+    listallProduct() {
+
+    }
+    deleteProduct() {
+
+    }
+    updatestockProduct() {
+
+    }
+    createciscount() {
+
+    }
+
 }
 
 module.exports = ProductController;
