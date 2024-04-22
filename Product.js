@@ -1,4 +1,4 @@
-class Product {
+export class Product {
     
     constructor(name, price, stock) {
         this.name = name;
@@ -69,4 +69,4 @@ class Product {
     };
 }
 
-module.exports = Product;
+//module.exports = Product;

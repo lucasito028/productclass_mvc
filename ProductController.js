@@ -1,6 +1,6 @@
-const Product = require('./Product');
+import {Product} from './Product.js';
 
-class ProductController {
+export class ProductController {
 
     constructor() {
         
@@ -18,61 +18,18 @@ class ProductController {
             
         ];
 
-        this.productsInCart = [];
+        this.productsInCart = [
+            new Product("Produto 1", 10.10, 2),
+        ];
     }
 
-
-    /* Controllers Costumers Functions */
-    addToCart(productIndex, quantity) {
-        const product = this.productsPossible[productIndex];
-        if (!product) {
-            console.log("Produto não encontrado.");
-            return;
-        }
-        if (product.stock < quantity) {
-            console.log("Quantidade solicitada indisponível.");
-            return;
-        }
-
-        const existingProductIndex = this.productsInCart.findIndex(prod => prod.name === product.name);
-        if (existingProductIndex !== -1) {
-            this.productsInCart[existingProductIndex].stock += quantity;
-        } else {
-            this.productsInCart.push(new Product(product.name, product.price, quantity));
-        }
-
-        console.log(`${quantity} ${product.name}(s) adicionado(s) ao carrinho.`);
-    }
-
-
-    // Remove um produto do carrinho pelo índice do array
-    removestockFromCart(productIndex, quantity) {
-        const productInCart = this.productsInCart[productIndex];
-        if (!productInCart) {
-            console.log("Produto não encontrado no carrinho.");
-            return;
-        }
-
-        if (productInCart.stock < quantity) {
-            console.log("Quantidade a ser removida maior do que a disponível no carrinho.");
-            return;
-        }
-
-        productInCart.stock -= quantity;
-        if (productInCart.stock === 0) {
-            this.productsInCart.splice(productIndex, 1);
-        }
-
-        console.log(`${quantity} ${productInCart.name}(s) removido(s) do carrinho.`);
-    }
-
-    removeproductFromCart(productIndex) {
-        const removedProduct = this.productsInCart.splice(productIndex, 1);
-            if (removedProduct.length === 0) {
-                console.log("Produto não encontrado no carrinho.");
-            return;
-        }
-        console.log(`${removedProduct[0].name} removido do carrinho.`);
+    listallProductfromcart() {
+        let msg;
+        msg += "Lista de todos os produtos:\n\n";
+        this.productsInCart.forEach((product, index) => {
+            msg += `${index + 1}. Nome: ${product.name}, Preço: ${product.price}, Estoque: ${product.stock}\n`;
+        });
+        alert(msg);
     }
 
     // Calculate Brute value
@@ -84,6 +41,64 @@ class ProductController {
         return total.toFixed(2);
     }
 
+
+    
+    /* Controllers Costumers Functions */
+    addToCart(productIndex, qtd) {
+
+        const product = this.productsPossible[productIndex];
+        if (!product) {
+            alert("Produto não encontrado.");
+            return;
+        }
+        if (product.stock < qtd) {
+            alert("Quantidade solicitada indisponível.");
+            return;
+        }
+
+        const existingProductIndex = this.productsInCart.findIndex(prod => prod.name === product.name);
+        if (existingProductIndex !== -1) {
+            this.productsInCart[existingProductIndex].stock += qtd;
+        } else {
+            this.productsInCart.push(new Product(product.name, product.price, qtd));
+        }
+
+        alert(`${qtd} ${product.name}(s) adicionado(s) ao carrinho.`);
+    }
+
+
+    // Altera a quantidade de um produto do carrinho pelo índice do array
+    alterstockfromcart(productIndex, qtd) {
+
+        const productInCart = this.productsInCart[productIndex];
+        if (!productInCart) {
+            alert("Produto não encontrado no carrinho.");
+            return;
+        }
+        productInCart.stock += qtd;
+        alert(`Ficou no ${productInCart.name}: ${productInCart.stock} ao carrinho.`);
+    }
+
+    removeproductFromCart(productIndex) {
+        const removedProduct = this.productsInCart.splice(productIndex, 1);
+
+            if (removedProduct.length === 0) {
+                alert("Produto não encontrado no carrinho.");
+            return;
+        }
+
+        alert(`${removedProduct[0].name} removido do carrinho.`);
+    }
+
+    calculateSubtotalByIndex(id) {
+        const product = this.productsInCart[id];
+        if (!product) {
+            alert("Produto não encontrado no carrinho.");
+            return 0; 
+        }
+        return (product.price * product.stock).toFixed(2);
+    }
+
     // Just implments discount
     implementsdiscount() {
         let total = 0;
@@ -93,15 +108,23 @@ class ProductController {
         return total.toFixed(2);
     }
 
+    checkout() {
+        alert("Venda finalizada. Obrigado por comprar conosco!");
+        this.productsInCart = []; 
+    }
+
 
 
     
     /* Controllers Admin Functions*/
 
     createProduct(name, price, stock) {
+
         const newProduct = new Product(name, price, stock);
+
         this.productsPossible.push(newProduct);
-        console.log(`${name} adicionado à lista de produtos.`);
+
+        alert(`${name} adicionado à lista de produtos.`);
     }
     
     updateProduct(productIndex, newName, newPrice, newStock) {
@@ -109,63 +132,64 @@ class ProductController {
         const productToUpdate = this.productsPossible[productIndex];
 
         if (!productToUpdate) {
-            console.log("Produto não encontrado.");
+            alert("Produto não encontrado.");
             return;
         }
         productToUpdate.name = newName;
         productToUpdate.price = newPrice;
         productToUpdate.stock = newStock;
-        console.log(`${newName} atualizado.`);
+        alert(`${newName} atualizado.`);
     }
     
     readProduct(productIndex) {
         const product = this.productsPossible[productIndex];
         if (!product) {
-            console.log("Produto não encontrado.");
+            alert("Produto não encontrado.");
             return;
         }
-        console.log(`Nome: ${product.name}, Preço: ${product.price}, Estoque: ${product.stock}`);
+        alert(`Nome: ${product.name}, Preço: ${product.price}, Estoque: ${product.stock}`);
     }
     
     listallProduct() {
-        console.log("Lista de todos os produtos:");
+        let msg;
+        msg += "Lista de todos os produtos:\n\n";
         this.productsPossible.forEach((product, index) => {
-            console.log(`${index + 1}. Nome: ${product.name}, Preço: ${product.price}, Estoque: ${product.stock}`);
+            msg += `${index + 1}. Nome: ${product.name}, Preço: ${product.price}, Estoque: ${product.stock}\n`;
         });
+        alert(msg);
     }
     
     deleteProduct(productIndex) {
         const deletedProduct = this.productsPossible.splice(productIndex, 1);
         if (deletedProduct.length === 0) {
-            console.log("Produto não encontrado.");
+            alert("Produto não encontrado.");
             return;
         }
-        console.log(`${deletedProduct[0].name} removido da lista de produtos.`);
+        alert(`${deletedProduct[0].name} removido da lista de produtos.`);
     }
     
     updatestockProduct(productIndex, newStock, time) {
         const product = this.productsPossible[productIndex];
         if (!product) {
-            console.log("Produto não encontrado.");
+            alert("Produto não encontrado.");
             return;
         }
         product.updateStock(time, newStock) // Chama a função updateStock do produto com um tempo de 3 segundos e o novo estoque
-            .then(response => console.log(response))
-            .catch(error => console.error(error));
+            .then(response => alert(response))
+            .catch(error => alert(error));
     }
     
     createciscount(productIndex, discount) {
         const product = this.productsPossible[productIndex];
         if (!product) {
-            console.log("Produto não encontrado.");
+            alert("Produto não encontrado.");
             return;
         }
         product.createDiscount(time, discount) // Chama a função createDiscount do produto com um tempo de 3 segundos e o desconto
-            .then(response => console.log(response))
-            .catch(error => console.error(error));
+            .then(response => alert(response))
+            .catch(error => alert(error));
     }
     
-
 }
 
-module.exports = ProductController;
+//module.exports = ProductController;
