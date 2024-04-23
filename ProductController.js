@@ -2,7 +2,7 @@ import {Product} from './Product.js';
 
 export class ProductController {
 
-    productsPossible = [
+    productsPossible = [    
         new Product("Produto 1", 10.10, 20),
         new Product("Produto 2", 20.30, 50),
         new Product("Produto 3", 15.50, 36),
@@ -18,14 +18,30 @@ export class ProductController {
     ];
     msg="";
 
-    //Basic Function
+    /* Basic Function */
     output(message){
         alert(message);
     }
 
     
     /* Costumers Functions */
+    listallProductFromCart() {
+
+        if (this.productsInTheCart.length === 0) {
+            this.output("O carrinho está vazio.");
+            return;
+        }
+    
+        this.msg = `Lista de Todos os Produtos`;
+        this.productsInTheCart.forEach((product, index) => {
+            this.msg += `${index + 1}. Produto: ${product.name}, Preço Unitário: ${product.price.toFixed(2)}, Quantidade: ${product.quantity}\n`;
+        });
+
+        return `${this.msg}\n`;
+    }
+
     addToCart(id, qtd) {
+    
         const productToAdd = this.productsPossible[id - 1]; 
 
         if (!productToAdd) {
@@ -49,20 +65,6 @@ export class ProductController {
         productToAdd.stock -= qtd;
     
         this.output(`${qtd} unidades de ${productToAdd.name} adicionadas ao carrinho.`);
-    }
-
-    listallProductFromCart() {
-        if (this.productsInTheCart.length === 0) {
-            this.output("O carrinho está vazio.");
-            return;
-        }
-    
-        this.msg = `Lista de Todos os Produtos`;
-        this.productsInTheCart.forEach((product, index) => {
-            this.msg += `${index + 1}. Produto: ${product.name}, Preço Unitário: ${product.price.toFixed(2)}, Quantidade: ${product.quantity}\n`;
-        });
-
-        this.output(this.msg);
     }
 
     alterStockFromCart(id, qtd) {
@@ -125,8 +127,15 @@ export class ProductController {
     
     }
 
-    calculateTotal(){
+    calculateTotalFromCard(){
+        let total = 0;
 
+        this.productsInTheCart.forEach(product => {
+            const subtotal = product.price * product.quantity;
+            total += subtotal;
+        });
+
+        this.output(`Total a ser pago: $${total.toFixed(2)}`);
     }
 
     checkout() {
@@ -136,7 +145,16 @@ export class ProductController {
 
 
 
-    /*Admin Functions*/
+    /* Admin Functions
+    */
+    listAllProduct() {
+        this.msg += "Lista de todos os produtos:\n\n";
+        this.productsPossible.forEach((product, id) => {
+            this.msg += `${id + 1}. Nome: ${product.name}, Preço: ${product.price}, Estoque: ${product.stock}\n`;
+        });
+        return this.msg;
+    }
+
     createProduct(name, price, stock) {
         const newProduct = new Product(name, price, stock);
 
@@ -145,18 +163,18 @@ export class ProductController {
         this.output(`${name} adicionado à lista de produtos.`);
     }
     
-    updateProduct(id, new_name, new_price, new_stock) {
+    updateProduct(id, newName, newPrice, newStock) {
         const productToUpdate = this.productsPossible[id];
 
         if (!productToUpdate) {
             this.output("Produto não encontrado.");
             return;
         }
-        productToUpdate.name = new_name;
-        productToUpdate.price = new_price;
-        productToUpdate.stock = new_stock;
+        productToUpdate.name = newName;
+        productToUpdate.price = newPrice;
+        productToUpdate.stock = newStock;
 
-        this.output(`${newname} atualizado.`);
+        this.output(`${newName} atualizado.`);
     }
     
     readProduct(id) {
@@ -167,14 +185,6 @@ export class ProductController {
             return;
         }
         this.output(`Nome: ${product.name}, Preço: ${product.price}, Estoque: ${product.stock}`);
-    }
-    
-    listallProduct() {
-        this.msg += "Lista de todos os produtos:\n\n";
-        this.productsPossible.forEach((product, id) => {
-            this.msg += `${id + 1}. Nome: ${product.name}, Preço: ${product.price}, Estoque: ${product.stock}\n`;
-        });
-        this.output(this.msg);
     }
     
     deleteProduct(id) {
@@ -188,7 +198,7 @@ export class ProductController {
         this.output(`${deletedProduct[0].name} removido da lista de produtos.`);
     }
     
-    updateStockProduct(id, new_stock, time) {
+    updateStockProduct(id, newStock, time) {
         const product = this.productsPossible[id];
 
         if (!product) {
@@ -196,7 +206,7 @@ export class ProductController {
             return;
         }
 
-        product.updateStock(time, new_stock).then(response => this.output(response))
+        product.updateStock(time, newStock).then(response => this.output(response))
             .catch(error => this.output(error));
     }
     
