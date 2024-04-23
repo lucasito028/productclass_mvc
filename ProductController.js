@@ -3,8 +3,7 @@ import {Product} from './Product.js';
 export class ProductController {
 
     constructor() {
-        
-        this.productsPossible = [
+        productsPossible = [
 
             new Product("Produto 1", 10.10, 20),
             new Product("Produto 2", 20.30, 50),
@@ -18,94 +17,46 @@ export class ProductController {
             
         ];
 
-        this.productsInCart = [
+        productsInTheCart = [
             new Product("Produto 1", 10.10, 2),
         ];
     }
 
+    output(message){
+        alert (message);
+    }
+
     listallProductfromcart() {
-        let msg;
-        msg += "Lista de todos os produtos:\n\n";
-        this.productsInCart.forEach((product, index) => {
-            msg += `${index + 1}. Nome: ${product.name}, Preço: ${product.price}, Estoque: ${product.stock}\n`;
-        });
-        alert(msg);
+        msg = `Lista de Todos os Produtos`;
+
     }
 
     // Calculate Brute value
     calculateTotal() {
-        let total = 0;
-        for (const product of this.productsInCart) {
-            total += product.price * product.stock;
-        }
-        return total.toFixed(2);
+       
     }
 
 
     
     /* Controllers Costumers Functions */
-    addToCart(productIndex, qtd) {
+    addToCart(id, qtd) {
 
-        const product = this.productsPossible[productIndex];
-        if (!product) {
-            alert("Produto não encontrado.");
-            return;
-        }
-        if (product.stock < qtd) {
-            alert("Quantidade solicitada indisponível.");
-            return;
-        }
-
-        const existingProductIndex = this.productsInCart.findIndex(prod => prod.name === product.name);
-        if (existingProductIndex !== -1) {
-            this.productsInCart[existingProductIndex].stock += qtd;
-        } else {
-            this.productsInCart.push(new Product(product.name, product.price, qtd));
-        }
-
-        alert(`${qtd} ${product.name}(s) adicionado(s) ao carrinho.`);
     }
 
 
     // Altera a quantidade de um produto do carrinho pelo índice do array
-    alterstockfromcart(productIndex, qtd) {
-
-        const productInCart = this.productsInCart[productIndex];
-        if (!productInCart) {
-            alert("Produto não encontrado no carrinho.");
-            return;
-        }
-        productInCart.stock += qtd;
-        alert(`Ficou no ${productInCart.name}: ${productInCart.stock} ao carrinho.`);
+    alterstockfromcart(id, qtd) {
     }
 
-    removeproductFromCart(productIndex) {
-        const removedProduct = this.productsInCart.splice(productIndex, 1);
-
-            if (removedProduct.length === 0) {
-                alert("Produto não encontrado no carrinho.");
-            return;
-        }
-
-        alert(`${removedProduct[0].name} removido do carrinho.`);
+    removeproductFromCart(id) {
+        
     }
 
     calculateSubtotalByIndex(id) {
-        const product = this.productsInCart[id];
-        if (!product) {
-            alert("Produto não encontrado no carrinho.");
-            return 0; 
-        }
-        return (product.price * product.stock).toFixed(2);
     }
 
     // Just implments discount
     implementsdiscount() {
-        let total = 0;
-        for (const product of this.productsInCart) {
-            total += product.price * product.stock;
-        }
-        return total.toFixed(2);
     }
 
     checkout() {
@@ -124,70 +75,73 @@ export class ProductController {
 
         this.productsPossible.push(newProduct);
 
-        alert(`${name} adicionado à lista de produtos.`);
+        this.output(`${name} adicionado à lista de produtos.`);
     }
     
-    updateProduct(productIndex, newName, newPrice, newStock) {
+    updateProduct(id, new_name, new_price, new_stock) {
 
-        const productToUpdate = this.productsPossible[productIndex];
+        const product_to_update = this.products_possible[id];
 
-        if (!productToUpdate) {
-            alert("Produto não encontrado.");
+        if (!product_to_update) {
+            this.output("Produto não encontrado.");
             return;
         }
-        productToUpdate.name = newName;
-        productToUpdate.price = newPrice;
-        productToUpdate.stock = newStock;
-        alert(`${newName} atualizado.`);
+        product_to_update.name = new_name;
+        product_to_update.price = new_price;
+        product_to_update.stock = new_stock;
+
+        this.output(`${newname} atualizado.`);
     }
     
-    readProduct(productIndex) {
-        const product = this.productsPossible[productIndex];
+    readProduct(id) {
+        const product = this.products_possible[id];
         if (!product) {
-            alert("Produto não encontrado.");
+            this.output("Produto não encontrado.");
             return;
         }
-        alert(`Nome: ${product.name}, Preço: ${product.price}, Estoque: ${product.stock}`);
+        this.output(`Nome: ${product.name}, Preço: ${product.price}, Estoque: ${product.stock}`);
     }
     
     listallProduct() {
         let msg;
         msg += "Lista de todos os produtos:\n\n";
-        this.productsPossible.forEach((product, index) => {
+        this.products_possible.forEach((product, index) => {
             msg += `${index + 1}. Nome: ${product.name}, Preço: ${product.price}, Estoque: ${product.stock}\n`;
         });
-        alert(msg);
+        this.output(msg);
     }
     
-    deleteProduct(productIndex) {
-        const deletedProduct = this.productsPossible.splice(productIndex, 1);
+    deleteProduct(id) {
+        const deletedProduct = this.productsPossible.splice(id, 1);
         if (deletedProduct.length === 0) {
-            alert("Produto não encontrado.");
+            this.output("Produto não encontrado.");
             return;
         }
-        alert(`${deletedProduct[0].name} removido da lista de produtos.`);
+        this.output(`${deletedProduct[0].name} removido da lista de produtos.`);
     }
     
-    updatestockProduct(productIndex, newStock, time) {
-        const product = this.productsPossible[productIndex];
+    updatestockProduct(id, new_stock, time) {
+        const product = this.productsPossible[id];
+
         if (!product) {
-            alert("Produto não encontrado.");
+            this.output("Produto não encontrado.");
             return;
         }
-        product.updateStock(time, newStock) // Chama a função updateStock do produto com um tempo de 3 segundos e o novo estoque
-            .then(response => alert(response))
-            .catch(error => alert(error));
+
+        product.updateStock(time, new_stock).then(response => this.output(response))
+            .catch(error => this.output(error));
     }
     
-    createciscount(productIndex, discount) {
-        const product = this.productsPossible[productIndex];
+    createciscount(id, discount) {
+        const product = this.productsPossible[id];
+
         if (!product) {
-            alert("Produto não encontrado.");
+            this.output("Produto não encontrado.");
             return;
         }
-        product.createDiscount(time, discount) // Chama a função createDiscount do produto com um tempo de 3 segundos e o desconto
-            .then(response => alert(response))
-            .catch(error => alert(error));
+
+        product.createDiscount(time, discount).then(response => this.output(response))
+            .catch(error => this.output(error));
     }
     
 }
