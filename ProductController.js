@@ -23,6 +23,7 @@ export class ProductController {
         alert(message);
     }
 
+    
     /* Costumers Functions */
     addToCart(id, qtd) {
         const productToAdd = this.productsPossible[id - 1]; 
@@ -49,6 +50,7 @@ export class ProductController {
     
         this.output(`${qtd} unidades de ${productToAdd.name} adicionadas ao carrinho.`);
     }
+
     listallProductFromCart() {
         if (this.productsInTheCart.length === 0) {
             this.output("O carrinho está vazio.");
@@ -62,6 +64,7 @@ export class ProductController {
 
         this.output(this.msg);
     }
+
     alterStockFromCart(id, qtd) {
         if (id < 1 || id > this.productsInTheCart.length) {
             this.output("ID de produto inválido.");
@@ -89,6 +92,7 @@ export class ProductController {
     
         this.output(`Quantidade do produto ${productToUpdate.name} atualizada para ${qtd}.`);
     }
+
     removeProductFromCart(id) {
         if (id < 1 || id > this.productsInTheCart.length) {
             this.output("ID de produto inválido.");
@@ -104,6 +108,7 @@ export class ProductController {
     
         this.output(`O produto ${removedProduct.name} foi removido do carrinho.`);
     }
+
     calculateSubtotalById(id) {
         if (id < 1 || id > this.productsInTheCart.length) {
             this.output("ID de produto inválido.");
@@ -115,12 +120,15 @@ export class ProductController {
     
         this.output(`Subtotal do produto ${product.name}: $${subtotal.toFixed(2)}`);
     }
-    // Just implments discount
+
     implementsDiscount() {
+    
     }
+
     calculateTotal(){
 
     }
+
     checkout() {
         alert("Venda finalizada. Obrigado por comprar conosco!");
         this.productsInTheCart = []; 
