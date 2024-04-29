@@ -31,7 +31,7 @@ export class Product {
     };
 
     updateStock = (time, valueStock) => {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
             const interval = setInterval(() => {
                 this.stock = this.stock + valueStock;
             }, 750);
@@ -39,7 +39,7 @@ export class Product {
             setTimeout(() => {
                 clearInterval(interval);
                 resolve({
-                    name: null,
+                    name: `O produto ${this.name} está com estoque de ${this.stock} unidades`,
                     stock: null,
                     response: "Estoque atualizado com sucesso"
                 });
@@ -47,6 +47,7 @@ export class Product {
         });
     };
 
+    //Aqui não sei onde implementar
     createDiscount = (time, valueDiscount) => {
         return new Promise((resolve, reject) => {
             const interval = setInterval(() => {
