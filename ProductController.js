@@ -14,7 +14,9 @@ export class ProductController {
         new Product("Produto 9", 10.80, 39),
     ];
     productsInTheCart = [
-        //new Product("Produto 1", 10.10, 2),
+        new Product("Produto 1", 10.10, 2),
+        new Product("Produto 2", 20.30, 5),
+        new Product("Produto 3", 15.50, 9),
     ];
 
     msg="";
