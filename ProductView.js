@@ -69,7 +69,7 @@ class ProductView{
                     ${ProductView.ProductController.listallProductFromCart()}
                     Digite o índice do produto que deseja Aumentar:`));
 
-                    let quantityToRemoveInTheCart = parseInt(prompt(`Digite a quantidade que deseja remover:`));
+                    let quantityToRemoveInTheCart = parseInt(prompt(`Digite a quantidade que deseja Aumentar:`));
                     ProductView.ProductController.addItensStockFromCart(productIndexToRemoveStock, quantityToRemoveInTheCart);
                     break;
                 case 3:
@@ -77,7 +77,7 @@ class ProductView{
                     ${ProductView.ProductController.listallProductFromCart()}
                     Digite o índice do produto que Remover`));
 
-                    let quantityToAddinCart = parseInt(prompt(`Digite a quantidade desejada:`));
+                    let quantityToAddinCart = parseInt(prompt(`Digite a quantidade desejada para Remover:`));
                     ProductView.ProductController.removeItensStockFromCart(productIndexToAdd, quantityToAddinCart);
                     break;
                 case 4:
@@ -163,7 +163,7 @@ class ProductView{
                     break;
                 case 5:
                     let productIdToApplyDiscount = parseInt(prompt(`Digite o índice do produto que deseja aplicar o desconto:`));
-                    let timeInSeconds = parseInt(prompt(`Digite o valor do desconto a ser aplicado (em %):`));
+                    let timeInSeconds = parseInt(prompt(`Digite Quantos segundos o desconto deve ficar:`));
                     let discount = parseFloat(prompt(`Digite o valor do desconto a ser aplicado (em %):`));
                     
                     ProductView.ProductController.createDiscount(productIdToApplyDiscount, timeInSeconds, discount);
