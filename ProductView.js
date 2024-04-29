@@ -5,11 +5,13 @@ class ProductView{
     static ProductController = new ProductController();
   
     static main(){
+
         let escolha;
                     
         while (true) {  
         escolha =
-        prompt(`Escolha uma opção:\n
+        prompt(
+        `Escolha uma opção:\n
         1 - No Cliente\n
         2 - No ADMIN\n
         3 - Sair`);
@@ -97,7 +99,6 @@ class ProductView{
                     ProductView.ProductController.calculateTotalFromCart()
                     ProductView.ProductController.checkout();
                     return;
-                    break;
                 case 0:
                     `Você saiu do Cliente.`;
                     return;
