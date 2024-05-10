@@ -13,13 +13,14 @@ export class ProductController {
         new Product("Produto 8", 17.90, 28),
         new Product("Produto 9", 10.80, 39),
     ];
+
     productsInTheCart = [
         new Product("Produto 1", 10.10, 2),
         new Product("Produto 2", 20.30, 5),
         new Product("Produto 3", 15.50, 9),
     ];
 
-    msg="";
+    msg = "";
 
     /* Basic Function */
     output(message){
@@ -101,7 +102,8 @@ export class ProductController {
         productToUpdate.quantity = qtd;
     
         this.output(`Quantidade do produto ${productToUpdate.name} atualizada para ${qtd}.`);
-    }*/
+    }
+    */
 
     addItensStockFromCart(id, qtd) {
         const productInCart = this.productsInTheCart[id - 1]; // Ajustando o índice do array
