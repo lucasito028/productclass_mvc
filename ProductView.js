@@ -6,19 +6,17 @@ class ProductView{
   
     static main(){
 
-        let escolha;
-                    
         while (true) {  
-        escolha =
+        let choose =
         prompt(
         `Escolha uma opção:\n
         1 - No Cliente\n
         2 - No ADMIN\n
         3 - Sair`);
                 
-        escolha = parseInt(escolha);
+        choose = parseInt(choose);
                 
-        switch (escolha) {
+        switch (choose) {
             case 1:
                 alert("Você selecionou a opção No Cliente.");
                 ProductView.costumerChoise();

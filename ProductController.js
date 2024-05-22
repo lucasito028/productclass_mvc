@@ -48,7 +48,7 @@ export class ProductController {
         return `${this.msg}\n`;
     }
 
-    addToCart(id, qtd) {
+    addToCart(id, stock) {
     
         const productToAdd = this.productsPossible[id - 1]; 
 
@@ -56,57 +56,31 @@ export class ProductController {
             this.output("Produto não encontrado.");
             return;
         }
-        if (productToAdd.stock < qtd) {
+
+        if (productToAdd.stock < stock) {
             this.output("Quantidade solicitada indisponível em estoque.");
             return;
         }
     
-        const existingProductIndex = this.productsInTheCart.findIndex(product => product.name === productToAdd.name);
+        const existingProductIndex = 
+        this.productsInTheCart.findIndex(product => product.name === productToAdd.name);
     
         if (existingProductIndex !== -1) {
-            this.productsInTheCart[existingProductIndex].quantity += qtd;
+            this.productsInTheCart[existingProductIndex].quantity += stock;
         } else {
-            const productCopy = new Product(productToAdd.name, productToAdd.price, qtd);
+            const productCopy = new Product(productToAdd.name, productToAdd.price, stock);
             this.productsInTheCart.push(productCopy);
         }
     
-        productToAdd.stock -= qtd;
+        productToAdd.stock -= stock;
     
-        this.output(`${qtd} unidades de ${productToAdd.name} adicionadas ao carrinho.`);
+        this.output(`${stock} unidades de ${productToAdd.name} adicionadas ao carrinho.`);
     }
 
-    /*
-    alterStockFromCart(id, qtd) {
-        if (id < 1 || id > this.productsInTheCart.length) {
-            this.output("ID de produto inválido.");
-            return;
-        }
-    
-        const productToUpdate = this.productsInTheCart[id - 1];
-    
-        if (!productToUpdate) {
-            this.output("Produto não encontrado no carrinho.");
-            return;
-        }
-    
-        const productPossible = this.productsPossible.find
-        (product => product.name === productToUpdate.name);
-        const currentStock = productPossible ? productPossible.stock + productToUpdate.quantity : 0;
-    
-        if (currentStock < qtd) {
-            this.output("Quantidade solicitada indisponível em estoque.");
-            return;
-        }
-    
-        productPossible.stock -= (qtd - productToUpdate.quantity);
-        productToUpdate.quantity = qtd;
-    
-        this.output(`Quantidade do produto ${productToUpdate.name} atualizada para ${qtd}.`);
-    }
-    */
 
-    addItensStockFromCart(id, qtd) {
-        const productInCart = this.productsInTheCart[id - 1]; // Ajustando o índice do array
+
+    addItensStockFromCart(id, stock) {
+        const productInCart = this.productsInTheCart[id - 1]; 
         
         if (!productInCart) {
             this.output("Produto não encontrado no carrinho.");
@@ -116,38 +90,38 @@ export class ProductController {
         const productPossible = this.productsPossible.find(product => product.name === productInCart.name);
         const currentStock = productPossible ? productPossible.stock + productInCart.stock : 0;
     
-        if (currentStock < qtd) {
+        if (currentStock < stock) {
             this.output("Quantidade solicitada indisponível em estoque.");
             return;
         }
     
-        productPossible.stock -= qtd;
-        productInCart.stock += qtd;
+        productPossible.stock -= stock;
+        productInCart.stock += stock;
     
-        this.output(`${qtd} unidades de ${productInCart.name} adicionadas ao estoque.`);
+        this.output(`${stock} unidades de ${productInCart.name} adicionadas ao estoque.`);
     }
     
-    removeItensStockFromCart(id, qtd) {
-        const productInCart = this.productsInTheCart[id - 1]; // Ajustando o índice do array
+    removeItensStockFromCart(id, stock) {
+        const productInCart = this.productsInTheCart[id - 1]; 
         
         if (!productInCart) {
             this.output("Produto não encontrado no carrinho.");
             return;
         }
     
-        if (productInCart.stock < qtd) {
+        if (productInCart.stock < stock) {
             this.output("Quantidade solicitada maior que a quantidade no carrinho.");
             return;
         }
     
         const productPossible = this.productsPossible.find(product => product.name === productInCart.name);
         if (productPossible) {
-            productPossible.stock += qtd;
+            productPossible.stock += stock;
         }
     
-        productInCart.stock -= qtd;
+        productInCart.stock -= stock;
     
-        this.output(`${qtd} unidades de ${productInCart.name} removidas do carrinho.`);
+        this.output(`${stock} unidades de ${productInCart.name} removidas do carrinho.`);
     }
     
 
@@ -242,17 +216,6 @@ export class ProductController {
 
         this.output(`${newName} atualizado.`);
     }
-    /*
-    readProduct(id) {
-        const product = this.productsPossible[id];
-
-        if (!product) {
-            this.output("Produto não encontrado.");
-            return;
-        }
-        this.output(`Nome: ${product.name}, Preço: ${product.price}, Estoque: ${product.stock}`);
-    }
-    */
     
     deleteProduct(id) {
         const deletedProduct = this.productsPossible.splice(id, 1);
@@ -282,9 +245,8 @@ export class ProductController {
         }
     }
     
-
     updateStockProduct(id, newStock, time) {
-        const product = this.productsPossible[id - 1]; // Ajustando o índice do array
+        const product = this.productsPossible[id - 1]; 
     
         if (!product) {
             this.output("Produto não encontrado.");
@@ -315,5 +277,3 @@ export class ProductController {
     
     
 }
-
-//module.exports = ProductController;
