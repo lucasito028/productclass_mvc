@@ -22,13 +22,10 @@ export class ProductController {
 
     msg = "";
 
-    /* Basic Function */
     output(message){
         alert(message);
     }
 
-    
-    /* Costumers Functions */
     listallProductFromCart() {
 
         this.msg = "";
@@ -39,6 +36,7 @@ export class ProductController {
         }
 
         this.msg = `Lista de Todos os Produtos do Carrino\n`;
+
         this.productsInTheCart.forEach((product, index) => {
             this.msg += `${index + 1}. Produto: ${product.name}, 
             Preço Unitário: ${product.price.toFixed(2)}, 
@@ -76,8 +74,6 @@ export class ProductController {
     
         this.output(`${stock} unidades de ${productToAdd.name} adicionadas ao carrinho.`);
     }
-
-
 
     addItensStockFromCart(id, stock) {
         const productInCart = this.productsInTheCart[id - 1]; 
@@ -173,10 +169,7 @@ export class ProductController {
         this.productsInTheCart = []; 
     }
 
-
-
-    /* Admin Functions
-    */
+    /* Admin Functions */
     listAllProduct() {
         this.msg = "";
 
@@ -261,7 +254,6 @@ export class ProductController {
             .catch(error => this.output(error));
     }
     
-    
     createDiscount(id, time, discount) {
         const product = this.productsPossible[id];
     
@@ -274,6 +266,4 @@ export class ProductController {
             .then(response => this.output(response.message))
             .catch(error => this.output(error.response));
     }
-    
-    
 }
