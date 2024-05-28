@@ -52,9 +52,8 @@ export class Product {
         return new Promise((resolve, reject) => {
             const interval = setInterval(() => {
                 resolve({
-                    message: `O desconto está na ativa!! de ${valueDiscount}%\n\nProduto ${
-                        this.name
-                    } está custando: ${(this.price / (1 + valueDiscount / 100)).toFixed(2)}`
+                    message: `O desconto está na ativa!! de ${valueDiscount}%\n\nProduto ${this.name} 
+                    está custando: ${(this.price / (1 + valueDiscount / 100)).toFixed(2)}`
                 });
             }, 750);
     

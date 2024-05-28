@@ -1,10 +1,8 @@
 import {ProductController} from './ProductController.js';
-//import {RenderForm} from './components/RenderForm.js'
 
 class ProductView{
 
     static ProductController = new ProductController();
-    //static RenderForm = new RenderForm();
 
     choose
 
@@ -41,10 +39,8 @@ class ProductView{
     static costumerChoise() {
         while (true) {
 
-            let id;
-            let name;
-            let price;
-            let stock;
+            let id = null
+            let stock = null
 
             this.choose =
                 prompt(`
@@ -63,43 +59,39 @@ class ProductView{
 
             switch (this.choose) {
                 case 1:
-                    let productIndexToAddToCart = parseInt(prompt(`
-                    ${ProductView.ProductController.listAllProduct()}
+                    id = parseInt(prompt(`${ProductView.ProductController.listAllProduct()}
                     ${ProductView.ProductController.listallProductFromCart()}
                     Digite o índice do produto que deseja adicionar:`));
+                    stock = parseInt(prompt(`Digite a quantidade que deseja adicionar:`));
 
-                    let quantityToAdd = parseInt(prompt(`Digite a quantidade que deseja adicionar:`));
-                    ProductView.ProductController.addToCart(productIndexToAddToCart, quantityToAdd);
+                    ProductView.ProductController.addToCart(id, stock);
                     break;
                 case 2:
-                    let productIndexToRemoveStock = parseInt(prompt(`
-                    ${ProductView.ProductController.listAllProduct()}
+                    id = parseInt(prompt(`${ProductView.ProductController.listAllProduct()}
                     ${ProductView.ProductController.listallProductFromCart()}
                     Digite o índice do produto que deseja Aumentar:`));
+                    stock = parseInt(prompt(`Digite a quantidade que deseja Aumentar:`));
 
-                    let quantityToRemoveInTheCart = parseInt(prompt(`Digite a quantidade que deseja Aumentar:`));
-                    ProductView.ProductController.addItensStockFromCart(productIndexToRemoveStock, quantityToRemoveInTheCart);
+                    ProductView.ProductController.addItensStockFromCart(id, stock);
                     break;
                 case 3:
-                    let productIndexToAdd = parseInt(prompt(`
-                    ${ProductView.ProductController.listallProductFromCart()}
+                    id = parseInt(prompt(`${ProductView.ProductController.listallProductFromCart()}
                     Digite o índice do produto que Remover`));
+                    stock = parseInt(prompt(`Digite a quantidade desejada para Remover:`));
 
-                    let quantityToAddinCart = parseInt(prompt(`Digite a quantidade desejada para Remover:`));
-                    ProductView.ProductController.removeItensStockFromCart(productIndexToAdd, quantityToAddinCart);
+                    ProductView.ProductController.removeItensStockFromCart(id, stock);
                     break;
                 case 4:
-                    let productIndexToRemove = parseInt(prompt(`
-                    ${ProductView.ProductController.listallProductFromCart()}
+                    id = parseInt(prompt(`${ProductView.ProductController.listallProductFromCart()}
                     Digite o índice do produto que deseja Excluir`));
 
-                    ProductView.ProductController.removeProductFromCart(productIndexToRemove);
+                    ProductView.ProductController.removeProductFromCart(id);
                     break;
                 case 5:
-                    let productIndexToCalculate = prompt(`
-                    ${ProductView.ProductController.listallProductFromCart()}
+                    id = prompt(`${ProductView.ProductController.listallProductFromCart()}
                     Digite o índice do produto que deseja calcular o subtotal:`);
-                    ProductView.ProductController.calculateSubtotalById(productIndexToCalculate);
+
+                    ProductView.ProductController.calculateSubtotalById(id);
                     break;
                 case 6:
                     ProductView.ProductController.calculateTotalFromCart()
@@ -118,10 +110,11 @@ class ProductView{
     static adminChoise() {
         while (true) {
 
-            let id;
-            let name;
-            let price;
-            let stock;
+            
+            let name = null
+            let price = null
+            let stock = null
+            let timeInSeconds = null
 
             let productList = ProductView.ProductController.listAllProduct();
 
@@ -143,12 +136,12 @@ class ProductView{
                     name = prompt(`Digite o nome do produto:`);
                     price = parseFloat(prompt(`Digite o preço do produto:`));
                     stock = parseInt(prompt(`Digite o estoque do produto:`));
+
                     ProductView.ProductController.createProduct(name, price, stock);
                     break;
                 case 2:
                     id = parseInt(prompt(`${ProductView.ProductController.listAllProduct()}
                     Digite o índice do produto que deseja atualizar:`));
-
                     name = prompt(`Digite o novo nome do produto:`);
                     price = parseFloat(prompt(`Digite o novo preço do produto:`));
                     stock = parseInt(prompt(`Digite o novo estoque do produto:`));
@@ -156,13 +149,12 @@ class ProductView{
                     ProductView.ProductController.updateProduct(id, name, price, stock);
                     break;
                 case 3:
-                    let id = parseInt(prompt(`${ProductView.ProductController.listAllProduct()}
+                    id = parseInt(prompt(`${ProductView.ProductController.listAllProduct()}
                     Digite o índice do produto que deseja alterar o estoque:`));
+                    stock = parseFloat(prompt(`Digite a quantidade por segundos`));
+                    timeInSeconds = parseInt(prompt(`Digite o tempo em segundos`));
 
-                    let newStockByTime = parseFloat(prompt(`Digite a quantidade por segundos`));
-                    let timebySeconds = parseInt(prompt(`Digite o tempo em segundos`));
-
-                    ProductView.ProductController.updateStockProduct(id, newStockByTime, timebySeconds);
+                    ProductView.ProductController.updateStockProduct(id, stock, timeInSeconds);
                     break;
                 case 4:
                     id = parseInt(prompt(`Digite o índice do produto que deseja 
@@ -173,7 +165,7 @@ class ProductView{
                     break;
                 case 5:
                     id = parseInt(prompt(`Digite o índice do produto que deseja aplicar o desconto:`));
-                    let timeInSeconds = parseInt(prompt(`Digite Quantos segundos o desconto deve ficar:`));
+                    timeInSeconds = parseInt(prompt(`Digite Quantos segundos o desconto deve ficar:`));
                     let discount = parseFloat(prompt(`Digite o valor do desconto a ser aplicado (em %):`));
                     
                     ProductView.ProductController.createDiscount(id, timeInSeconds, discount);
