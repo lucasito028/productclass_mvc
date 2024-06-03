@@ -4,8 +4,66 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script type="module" src="smartcomponents/ProductView.js"></script>
 </head>
 <body>
+    <div class="message">
+
+    </div>
+
+    <div class="root">
+
+        <form id="choose">
+            <select name="options-possible" id="options-possible">
+                <option value="1">Cliente</option>
+                <option value="2">Admistrador</option>
+                <option value="3">Sair</option>
+            </select>
+        </form>
+
+    </div>
+    
+    <div class="product-possible">
+        <table class="products-table">
+            <thead>
+                <tr>
+                    <td>Id</td>
+                    <td>Product Name</td>
+                    <td>Stock</td>
+                    <td>Price</td>
+                </tr>
+            </thead>
+            <tbody id="show-products">
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="product-card">
+        <table class="products-table">
+            <thead id="head-products-table">
+                <tr>
+                    <td>Id</td>
+                    <td>Product Name</td>
+                    <td>Stock</td>
+                    <td>Price</td>
+                </tr>
+            </thead>
+            <tbody id="show-products">
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <script type="module" src="smartcomponents/ProductView.js"></script>
 </body>
 </html>

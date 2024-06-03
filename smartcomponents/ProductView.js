@@ -1,38 +1,38 @@
 import {ProductController} from './ProductController.js';
+import {Form} from './../dumbcomponents/Form.js';
+import {Table} from './../dumbcomponents/Table.js';
 
 class ProductView{
 
     static ProductController = new ProductController();
+    static Form = new Form();
+    static Table = new Table();
 
     choose
 
     static main(){
 
         while (true) {  
-        this.choose =
-        prompt(`Escolha uma opção:\n
-        1 - No Cliente\n
-        2 - No ADMIN\n
-        3 - Sair`);
+
+            let selectedBox = document.getElementById("choose");
+            this.choose = selectedBox.options[selectedBox.selectedIndex].value;   
                 
-        this.choose = parseInt(this.choose);
-                
-        switch (this.choose) {
-            case 1:
-                alert("Você selecionou a opção No Cliente.");
-                ProductView.costumerChoise();
-            break;
-            case 2:
-                alert("Você selecionou a opção No ADMIN.");
-                ProductView.adminChoise();
+            switch (this.choose) {
+                case 1:
+                    alert("Você selecionou a opção No Cliente.");
+                    ProductView.costumerChoise();
                 break;
-            case 3:
-                alert("Você selecionou a opção Sair. Encerrando o ciclo.");
-                return; 
-            default:
-                alert("Opção inválida. Tente novamente.");
-                break;
-                }
+                case 2:
+                    alert("Você selecionou a opção No ADMIN.");
+                    ProductView.adminChoise();
+                    break;
+                case 3:
+                    alert("Você selecionou a opção Sair. Encerrando o ciclo.");
+                    return; 
+                default:
+                    alert("Opção inválida. Tente novamente.");
+                    break;
+                    }
         }
     }
                 
