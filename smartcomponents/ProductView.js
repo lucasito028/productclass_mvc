@@ -1,14 +1,18 @@
 import {ProductController} from './ProductController.js';
 import {Form} from './../dumbcomponents/Form.js';
 import {Table} from './../dumbcomponents/Table.js';
+import {Message} from './../dumbcomponents/Message.js';
+import {Costumer} from './Costumer.js';
+import {Admin} from './Admin.js';
 
 class ProductView{
 
     static ProductController = new ProductController();
     static Form = new Form();
     static Table = new Table();
-
-    choose
+    static Message = new Message();
+    static Costumer = new Costumer();
+    static Admin = new Admin();
 
     static main(){
 
@@ -16,6 +20,7 @@ class ProductView{
 
             let selectedBox = document.getElementById("choose");
             this.choose = selectedBox.options[selectedBox.selectedIndex].value;   
+            console.log(this.choose)
                 
             switch (this.choose) {
                 case 1:
@@ -35,6 +40,7 @@ class ProductView{
                     }
         }
     }
+
                 
     static costumerChoise() {
         while (true) {
