@@ -14,12 +14,19 @@ class ProductView{
     static Costumer = new Costumer();
     static Admin = new Admin();
 
+    static init(){
+        let selectedBox = document.getElementById("options-possible");
+        this.choose = parseInt(selectedBox.options[selectedBox.selectedIndex].value);   
+        console.log(this.choose)
+    }
+    /*
     static main(){
 
+        console.log()
         while (true) {  
 
             let selectedBox = document.getElementById("choose");
-            this.choose = selectedBox.options[selectedBox.selectedIndex].value;   
+            this.choose = parseInt(selectedBox.options[selectedBox.selectedIndex].value);   
             console.log(this.choose)
                 
             switch (this.choose) {
@@ -40,7 +47,7 @@ class ProductView{
                     }
         }
     }
-
+*/
                 
     static costumerChoise() {
         while (true) {
@@ -193,4 +200,6 @@ class ProductView{
 
 }
 
-ProductView.main();
+function begin(){
+    ProductView.init()
+}

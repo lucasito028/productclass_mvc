@@ -14,6 +14,10 @@ export class ProductController {
         new Product("Produto 9", 10.80, 39),
     ];
 
+    allDiscount = [
+        
+    ]
+
     productsInTheCart = [
         new Product("Produto 1", 10.10, 2),
         new Product("Produto 2", 20.30, 5),
