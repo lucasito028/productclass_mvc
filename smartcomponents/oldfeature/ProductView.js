@@ -1,9 +1,9 @@
 import {ProductController} from './ProductController.js';
-import {Form} from './../dumbcomponents/Form.js';
-import {Table} from './../dumbcomponents/Table.js';
-import {Message} from './../dumbcomponents/Message.js';
-import {Costumer} from './Costumer.js';
-import {Admin} from './Admin.js';
+import {Form} from '../../dumbcomponents/Form.js';
+import {Table} from '../../dumbcomponents/Table.js';
+import {Message} from '../../dumbcomponents/Message.js';
+import {Costumer} from '../Costumer.js';
+import {Admin} from '../Admin.js';
 
 class ProductView{
 

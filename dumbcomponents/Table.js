@@ -20,7 +20,7 @@ class Table{
         `
     }
     
-    biuldTableProducts({values = ({})}){
+    biuldTableProducts({values = ({},{})}){
 
         document.getElementById("head-products-table").innerHTML = `
         <tr>
@@ -30,13 +30,15 @@ class Table{
             <td>Price</td>
         </tr>
         `
-        document.getElementById("show-products").innerHTML = `
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        `
+        values.forEach(element => {
+            document.getElementById("show-products").innerHTML = `
+            <tr>
+                <td>${element.id}</td>
+                <td>${element.name}</td>
+                <td>${element.stock}</td>
+                <td>${element.price}</td>
+            </tr>`
+        });
+        
     }
 }

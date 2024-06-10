@@ -1,4 +1,4 @@
-import {Product} from './Product.js';
+import {Product} from '../Product.js';
 
 export class ProductController {
 
