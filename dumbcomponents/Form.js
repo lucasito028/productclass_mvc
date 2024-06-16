@@ -1,6 +1,8 @@
 class Form{
 
-    biuldForm({atributes = {}}){
+    biuldForm({atributes = {
+        number: "id"
+    }}){
         document.getElementById("root").innerHTML = `
         <form id="form">
         </form>
@@ -11,7 +13,7 @@ class Form{
             document.getElementById("form").innerHTML = `
             <div>
                  <span>${key}:</span>
-                <input type="${type}">
+                <input type=${type} name=${id} id=${id}>
             </div>
             `
         }

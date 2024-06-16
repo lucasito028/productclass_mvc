@@ -1,6 +1,13 @@
 class Message{
-    biuldMessage({message}){
+    biuldMessage({configMessage = {
+        status: "success",
+        message: "Editado com Sucesso"
+    }}){
+        let {status, message} = configMessage
         document.getElementById("message").innerHTML=`
-        <h3>${message}</h3>` 
+            <div>
+                <h2>${status}</h2>
+                <h3>${message}</h3>
+            </div>` 
     }
 }
