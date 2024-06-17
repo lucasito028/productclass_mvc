@@ -47,6 +47,7 @@ export class Product {
         });
     };
 
+    /*
     //Aqui não sei onde implementar
     createDiscount = (time, valueDiscount) => {
         return new Promise((resolve, reject) => {
@@ -67,4 +68,5 @@ export class Product {
             }, time * 1000);
         });
     };
+    */
 }

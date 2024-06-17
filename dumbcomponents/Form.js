@@ -9,11 +9,11 @@ class Form{
         `
         let {atributes} = atributes
 
-        for(const[key, type] of Object.entries(atributes)){
+        for(const[type, key] of Object.entries(atributes)){
             document.getElementById("form").innerHTML = `
             <div>
                  <span>${key}:</span>
-                <input type=${type} name=${id} id=${id}>
+                <input type=${type} name=${key} id=${key}>
             </div>
             `
         }
