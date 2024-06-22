@@ -5,24 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body>
-    <div class="message">
+<body id="body">
+    <div id="message"></div>
 
+    <div id="table-show">
+    </div>
+    <div id="table-show2">
     </div>
 
     <div class="root">
-
-        <form id="choose" class="form-select form-select-lg mb-3">
-            <select name="options-possible" id="options-possible" onchange="main()">
-                <option selected>Selecione um Item</option>
-                <option value="1">Cliente</option>
-                <option value="2">Admistrador</option>
-            </select>
-        </form>
-
+        <select name="options-possible" id="options-possible" onchange="main()">
+            <option value="0">Selecione um Item</option>
+            <option value="1">Cliente</option>
+            <option value="2">Administrador</option>
+        </select>
     </div>
-    <script src="smartcomponents/Controller.js">
-        
+
+    <script type="module">
+        import { Controller } from './smartcomponents/Controller.js';
+        const controller = new Controller();
+
+        window.main = function() {
+            var x = document.getElementById("options-possible").value;
+            controller.handleSelection(x);
+        }
     </script>
 </body>
 </html>

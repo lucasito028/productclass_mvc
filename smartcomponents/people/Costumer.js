@@ -1,5 +1,5 @@
-import { People } from "./People";
-import { Product } from "../Product"
+import { People } from "./People.js";
+import { Product } from "../product/Product.js"
 
 export class Costumer extends People{
     products = [
@@ -15,23 +15,23 @@ export class Costumer extends People{
         });
         let newProduct = new Product(name, price, stock)
         this.products.push(newProduct);
-        return message;
+        return this.message;
     }
     removeProduct(id){
         const removeProduct = this.products.slice(id, 1);
 
         if (removeProduct.length === 0) {
-            return;
+            return this.message;
         }
-        return message;
+        return this.message;
     }
     calculateSubTotal(id){
         if (id < 1 || id > this.products.length) {
-            return "ID de produto inválido.";
+            return this.message;
         }
     
         const product = this.products[id - 1];
         const subtotal = product.price * product.stock;
-        return message;
+        return this.message;
     }
 }

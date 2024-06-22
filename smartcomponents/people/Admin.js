@@ -1,6 +1,6 @@
-import { People } from "./People";
-import { Product } from "../product/Product"
-import { Discount } from "../product/Discount";
+import { People } from "./People.js";
+import { Product } from "../product/Product.js"
+import { Discount } from "../product/Discount.js";
 
 export class Admin extends People{
     products = [
@@ -26,6 +26,7 @@ export class Admin extends People{
         this.products.push(newProduct);
         return message;
     }
+    
     updateProduct(id, name, price, stock){
         const productUpdate = this.products[id];
 

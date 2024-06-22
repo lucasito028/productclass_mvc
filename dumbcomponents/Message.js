@@ -1,10 +1,6 @@
-class Message{
+export class Message{
     
-    biuldMessage({configMessage = {
-        status: "success",
-        message: "Mensagem Padrão"
-    }}){
-        let {status, message} = configMessage
+    biuldMessage({ status = "success", message = "Mensagem Padrão"}){
         document.getElementById("message").innerHTML=`
             <div>
                 <h2>${status}</h2>

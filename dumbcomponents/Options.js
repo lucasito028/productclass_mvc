@@ -1,4 +1,4 @@
-export class Form{
+export class Options{
 
     biuldForm(){
         /*document.getElementById("root").innerHTML = `
@@ -14,7 +14,8 @@ export class Form{
                 <input type=${type} name=${key} id=${key}>
             </div>
             `
-        }*/
-       
+        }
+            */
+        
     }
 }
