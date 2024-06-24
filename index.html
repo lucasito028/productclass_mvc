@@ -10,12 +10,12 @@
 
     <div id="table-show">
     </div>
-    <div id="table-show2">
+    <div id="table-show-2">
     </div>
 
-    <div class="root">
+    <div id="root">
         <select name="options-possible" id="options-possible" onchange="main()">
-            <option value="0">Selecione um Item</option>
+            <option selected >Selecione um Item</option>
             <option value="1">Cliente</option>
             <option value="2">Administrador</option>
         </select>
@@ -29,6 +29,15 @@
             var x = document.getElementById("options-possible").value;
             controller.handleSelection(x);
         }
+
+        function exit(){
+            document.getElementById("root").innerHTML = `
+            <select name="options-possible" id="options-possible" onchange="main()">
+                <option selected>Selecione um Item</option>
+                <option value="1">Cliente</option>
+                <option value="2">Administrador</option>
+            </select>` 
+        }   
     </script>
 </body>
 </html>

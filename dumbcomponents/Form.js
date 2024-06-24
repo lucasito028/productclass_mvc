@@ -1,20 +1,21 @@
 export class Form{
 
-    biuldForm(){
-        /*document.getElementById("root").innerHTML = `
+    biuldForm({atributes = {
+        name: "text",
+        stock: "number",
+        price: "number",
+    }}){
+        document.getElementById("root").innerHTML = `
         <form id="form">
-        </form>
-        `
-        let {atributes} = atributes
+        </form> `
 
-        for(const[type, key] of Object.entries(atributes)){
-            document.getElementById("form").innerHTML = `
+        for(const[key, type] of Object.entries(atributes)){
+            document.getElementById("form").innerHTML += `
             <div>
                  <span>${key}:</span>
                 <input type=${type} name=${key} id=${key}>
-            </div>
-            `
-        }*/
+            </div>`
+        }
        
     }
 }

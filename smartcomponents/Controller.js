@@ -30,8 +30,8 @@ export class Controller {
     costumerOption() {
         let entity = this.costumer
         let admin = this.admin
-        let productsPossible = admin.products
         let products = entity.products
+        let otherProducts = admin.products
 
         let message = this.message
         let table = this.table
@@ -40,6 +40,7 @@ export class Controller {
 
         message.biuldMessage({status: "Costumer Choise Win", message: "Now you're a Costumer"})
         table.buildTable({products})
+        options.biuldOption({});
 
     }
     adminOption() {
@@ -53,6 +54,8 @@ export class Controller {
 
         message.biuldMessage({status: "Admin Choise Win", message: "Now you're a Admin"})
         table.buildTable({products})
+        options.biuldOption({});
 
     }
+
 }

@@ -24,7 +24,7 @@ export class Admin extends People{
         });
         let newProduct = new Product(name, price, stock)
         this.products.push(newProduct);
-        return message;
+        return this.message;
     }
     
     updateProduct(id, name, price, stock){
@@ -38,46 +38,46 @@ export class Admin extends People{
         productUpdate.price = price;
         productUpdate.stock = stock;
 
-        return message;
+        return this.message;
     }
     deleteProduct(id){
         const deletedProduct = this.products.slice(id, 1);
 
         if (deletedProduct.length === 0) {
-            return;
+            return this.message;
         }
-        return message;
+        return this.message;
     }
 
     createDiscount(name, percentage, timeSeconds){
         
         this.discounts.forEach(discount => {
             if(discount.name = name){
-                return;
+                return this.message;
             }
         });
         let newDiscount = new Discount(name, percentage, timeSeconds)
         this.discounts.push(newDiscount);
-        return message;
+        return this.message;
     }
     updateDiscount(id, name, percentage, timeSeconds){
         const discountUpdate = this.discounts[id];
 
         if (!discountUpdate) {
-            return "Produto não encontrado.";
+            return this.message;
         }
         discountUpdate.name = name;
         discountUpdate.percentage = percentage;
         discountUpdate.timeSeconds = timeSeconds;
 
-        return message;
+        return this.message;
     }
     deleteDiscount(id){
         const deletedDiscount = this.discounts.slice(id, 1);
 
         if (deletedDiscount.length === 0) {
-            return;
+            return this.message;
         }
-        return message;
+        return this.message;
     }
 }

@@ -1,21 +1,16 @@
 export class Options{
 
-    biuldForm(){
-        /*document.getElementById("root").innerHTML = `
-        <form id="form">
-        </form>
-        `
-        let {atributes} = atributes
-
-        for(const[type, key] of Object.entries(atributes)){
-            document.getElementById("form").innerHTML = `
-            <div>
-                 <span>${key}:</span>
-                <input type=${type} name=${key} id=${key}>
-            </div>
+    biuldOption({values = ['Create', 'Update', 'Read', 'Delete']}){
+        document.getElementById("root").innerHTML = ``
+        values.forEach((value) => {
+            document.getElementById("root").innerHTML += `
+            <p><button>${value}</button></p>
             `
-        }
-            */
+        }   
         
+    )
+        document.getElementById("root").innerHTML += `
+                <p><button onclick="exit()">Sair de Cliente</button></p>
+        `
     }
-}
+  }
