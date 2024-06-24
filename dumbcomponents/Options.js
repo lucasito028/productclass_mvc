@@ -1,6 +1,6 @@
 export class Options{
 
-    biuldOption({values = ['Create', 'Update', 'Read', 'Delete']}){
+    biuldOption({values = ['Create', 'Update','Delete']}){
         document.getElementById("root").innerHTML = ``
         values.forEach((value) => {
             document.getElementById("root").innerHTML += `

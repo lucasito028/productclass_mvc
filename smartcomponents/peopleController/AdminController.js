@@ -1,16 +1,7 @@
-import { People } from "./People.js";
-import { Product } from "../product/Product.js"
-import { Discount } from "../product/Discount.js";
+import { Admin } from "../people/Admin.js"
 
-export class Admin extends People{
-    products = [
-        new Product("Picanha", 22.00, 27),
-        new Product("Filé Mignon", 22.10, 30),
-        new Product("Wagyu Coxao Mole", 22.40, 25),
-        new Product("Miolo do Acém", 22.60, 40),
-        new Product("Hamburguer", 25.70, 20)
-    ];
-    
+export class AdminController extends Admin{
+
     createProduct(name, price, stock){
         
         this.products.forEach(product => {

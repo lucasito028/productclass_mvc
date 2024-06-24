@@ -30,14 +30,18 @@
             controller.handleSelection(x);
         }
 
-        function exit(){
-            document.getElementById("root").innerHTML = `
+        window.exit = function() {
+            document.getElementById("root").innerHTML=`
             <select name="options-possible" id="options-possible" onchange="main()">
-                <option selected>Selecione um Item</option>
+                <option selected >Selecione um Item</option>
                 <option value="1">Cliente</option>
                 <option value="2">Administrador</option>
-            </select>` 
-        }   
+            </select>`
+            
+            document.getElementById("table-show").innerHTML=``
+            document.getElementById("message").innerHTML=``
+        }
+  
     </script>
 </body>
 </html>
