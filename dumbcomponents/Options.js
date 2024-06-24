@@ -10,7 +10,7 @@ export class Options{
         
     )
         document.getElementById("root").innerHTML += `
-                <p><button onclick="exit()">Sair de Cliente</button></p>
+                <p><button onclick="exit()">Sair</button></p>
         `
     }
   }
