@@ -1,14 +1,16 @@
 export class Options{
 
-    biuldOption({values = ['Create', 'Update','Delete']}){
+    biuldOption({config = {
+        create: "Create",
+        update: "Update",
+        delete: "Delete"
+    }}){
         document.getElementById("root").innerHTML = ``
-        values.forEach((value) => {
+
+        for(const[action, value] of Object.entries(config)){
             document.getElementById("root").innerHTML += `
-            <p><button>${value}</button></p>
-            `
-        }   
-        
-    )
+            <p><button onclick="${action}()">${value}</button></p>`
+        }
         document.getElementById("root").innerHTML += `
                 <p><button onclick="exit()">Sair</button></p>
         `

@@ -39,8 +39,11 @@ export class Controller {
 
         message.biuldMessage({status: "Costumer Choise Win", message: "Now you're a Costumer"})
         table.buildTable({products})
-        options.biuldOption({values : ['Add Product in Cart', 'Alter stock in Cart', 'Delete Product Car']});
-
+        options.biuldOption({config : {
+            addProduct: "Add new Product in the Cart",
+            alterProduct: "Alter stock in product in the Cart",
+            removeProduct: "Remove Product in Cart",
+        }});
     }
     adminOption() {
 
@@ -53,7 +56,11 @@ export class Controller {
 
         message.biuldMessage({status: "Admin Choise Win", message: "Now you're a Admin"})
         table.buildTable({products})
-        options.biuldOption({values : ['Create Product', 'Update Product', 'Delete Product']});
+        options.biuldOption({config : {
+            createProduct: "Create Product",
+            updateProduct: "Update Product",
+            deleteProduct: "Delete Product",
+        }});
 
     }
 
