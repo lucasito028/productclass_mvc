@@ -10,10 +10,7 @@ export class Admin extends People{
         new Product("Miolo do Acém", 22.60, 40),
         new Product("Hamburguer", 25.70, 20)
     ];
-    discounts = [
-        new Discount("Exemplo de Desconto 1", 5, 270),
-        new Discount("Exemplo de Desconto 2", 10, 180),
-    ];
+    
 
     createProduct(name, price, stock){
         

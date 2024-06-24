@@ -31,17 +31,14 @@ export class Controller {
         let entity = this.costumer
         let admin = this.admin
         let products = entity.products
-        let otherProducts = admin.products
 
         let message = this.message
         let table = this.table
-        let form = this.form
         let options = this.options
 
         message.biuldMessage({status: "Costumer Choise Win", message: "Now you're a Costumer"})
         table.buildTable({products})
         options.biuldOption({});
-
     }
     adminOption() {
         let entity = this.admin
@@ -49,13 +46,17 @@ export class Controller {
         let products = entity.products
 
         let table = this.table
-        let form = this.form
         let options = this.options
 
         message.biuldMessage({status: "Admin Choise Win", message: "Now you're a Admin"})
         table.buildTable({products})
         options.biuldOption({});
 
+    }
+
+    formBiuld(){
+        let form = this.form
+        form.biuldForm()
     }
 
 }
